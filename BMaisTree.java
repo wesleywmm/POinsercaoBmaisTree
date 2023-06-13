@@ -35,30 +35,30 @@ public class BMaisTree implements Constantes {
     public void split(No folha, No pai)
     {
         No cx1, cx2, irmaE = null, irmaD = null;
-        int iqtde, pospai, pos;
-        double qtde;
+        int qnt_int, pospai, pos;
+        float qnt_div;
         cx1 = new No();
         cx2 = new No(); 
-        qtde = m-1;
-        qtde = qtde / 2;
-        iqtde = (int)Math.round(qtde); 
+        qnt_div = m - 1;
+        qnt_div = qnt_div/2;
+        qnt_int = (int)Math.round(qnt_div); 
         if(folha.getvLig(0) == null)
         { 
-            for(int i = 0; i < iqtde; i++)
+            for(int i = 0; i < qnt_int; i++)
             {
                 cx1.setvInfo(cx1.getTl(), folha.getvInfo(i));                
                 cx1.setTl(cx1.getTl() + 1);           
             }
-            for(int i = iqtde; i < folha.getTl(); i++)
+            for(int i = qnt_int; i < folha.getTl(); i++)
             { 
                 cx2.setvInfo(cx2.getTl(), folha.getvInfo(i));               
-                cx2.setTl(cx2.getTl() + 1);           
+                cx2.setTl(cx2.getTl()+1);           
             }
             pospai = pai.procurarPosicao(cx2.getvInfo(0)); 
             if(pospai > 0)        
-                irmaE = pai.getvLig(pospai - 1);            
+                irmaE = pai.getvLig(pospai-1);            
             if(pospai < pai.getTl())
-                irmaD = pai.getvLig(pospai + 1);
+                irmaD = pai.getvLig(pospai+1);
             cx1.setAnt(irmaE); 
             cx1.setProx(cx2);
             cx2.setAnt(cx1);
@@ -71,10 +71,10 @@ public class BMaisTree implements Constantes {
             { 
                 pos = pai.procurarPosicao(cx2.getvInfo(0)); 
                 pai.remanejar(pos);
-                pai.setvInfo(pos, folha.getvInfo(iqtde));
+                pai.setvInfo(pos, folha.getvInfo(qnt_int));
                 pai.setvLig(pos, cx1);
-                pai.setvLig(pos + 1, cx2);
-                pai.setTl(pai.getTl() + 1);
+                pai.setvLig(pos+1, cx2);
+                pai.setTl(pai.getTl()+1);
             }
             else
             { 
@@ -86,30 +86,30 @@ public class BMaisTree implements Constantes {
         }
         else
         { 
-            for(int i = 0; i < iqtde; i++)
+            for(int i = 0; i < qnt_int; i++)
             {
                 cx1.setvInfo(cx1.getTl(), folha.getvInfo(i));
                 cx1.setvLig(cx1.getTl(), folha.getvLig(i));
-                cx1.setTl(cx1.getTl() + 1);           
+                cx1.setTl(cx1.getTl()+1);           
             }   
-            cx1.setvLig(iqtde, folha.getvLig(iqtde));
-            for(int i = iqtde + 1; i < folha.getTl(); i++)
+            cx1.setvLig(qnt_int, folha.getvLig(qnt_int));
+            for(int i = qnt_int + 1; i < folha.getTl(); i++)
             {  
                 cx2.setvInfo(cx2.getTl(), folha.getvInfo(i));
                 cx2.setvLig(cx2.getTl(), folha.getvLig(i));
-                cx2.setTl(cx2.getTl() + 1);           
+                cx2.setTl(cx2.getTl()+1);           
             }
             cx2.setvLig(cx2.getTl(), folha.getvLig(folha.getTl()));           
             if(pai != folha)
             { 
-                pai.setvInfo(pai.getTl(), folha.getvInfo(iqtde)); 
+                pai.setvInfo(pai.getTl(), folha.getvInfo(qnt_int)); 
                 pai.setvLig(pai.getTl(), cx1);
-                pai.setvLig(pai.getTl() + 1, cx2);
-                pai.setTl(pai.getTl() + 1);
+                pai.setvLig(pai.getTl()+1, cx2);
+                pai.setTl(pai.getTl()+1);
             }          
             else
             { 
-                No no = new No(folha.getvInfo(iqtde));
+                No no = new No(folha.getvInfo(qnt_int));
                 no.setvLig(0, cx1);
                 no.setvLig(1, cx2);
                 no.setTl(1);
