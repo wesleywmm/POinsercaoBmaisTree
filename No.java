@@ -11,7 +11,14 @@ public class No implements Constantes{
         vLig = new No[m+1];
         tl = 0;
     }
+    
+    public No(int info)
+    {
+        this();
+        vInfo[0] = info;
+        tl = 1;
 
+    }
     public int procurarPosicao(int info)
     {
         int pos=0;
@@ -24,8 +31,8 @@ public class No implements Constantes{
     {
         vLig[tl+1] = vLig[tl];
         for(int i=tl; i>pos ; i--) {
-            vInfo[i] = vInfo[i-1];
             vLig[i] = vLig[i-1];
+            vInfo[i] = vInfo[i-1];  
         }
     }
 
